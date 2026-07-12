@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Selected Clients Preview</title>
+    <link rel="stylesheet" href="../components/selected-clients.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400;62..125,500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400&display=swap');
+      :root { --paper: #f1eee8; --ink: #111213; --font-sans: 'Archivo', Arial, sans-serif; --page-gutter: clamp(1.25rem, 6vw, 7rem); }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); }
+      .hero { min-height: 40vh; padding: clamp(2rem, 7vw, 6rem) var(--page-gutter); background: #090a0a; color: var(--paper); display: flex; align-items: flex-end; }
+      .hero p { margin: 0; max-width: 30rem; font: 400 clamp(2rem, 5vw, 4.5rem)/.98 'Bodoni Moda', Georgia, serif; }
+      .hero mark { background: #c8e000; color: #111213; }
+      .selected-clients__list li:nth-child(6) img { height: clamp(1.8rem, 3.4vw, 2.5rem); }
+      .continuation { padding: clamp(3rem, 8vw, 7rem) var(--page-gutter); }
+      .continuation p { max-width: 32rem; font: 400 clamp(2rem, 5vw, 4rem)/1 'Bodoni Moda', Georgia, serif; }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <p>“The product isn’t <mark>the story yet.</mark>”</p>
+    </section>
+    <section class="selected-clients" aria-labelledby="selected-clients-title">
+      <div class="selected-clients__heading">
+        <p id="selected-clients-title">Selected clients</p>
+        <p>Beauty · Wellness · CPG · Home</p>
+      </div>
+      <ul class="selected-clients__list" role="list">
+        <li><img src="../public/logos/moonbrew.png" alt="Moonbrew"></li>
+        <li><img src="../public/logos/hanacure.png" alt="Hanacure"></li>
+        <li><img src="../public/logos/equip-foods.png" alt="Equip Foods"></li>
+        <li class="selected-clients__mark"><img src="../public/logos/filterbaby.png" alt="Filterbaby"></li>
+        <li class="selected-clients__mark"><img src="../public/logos/masa-chips.png" alt="MASA Chips"></li>
+        <li class="selected-clients__mark"><img src="../public/logos/graymatter.png" alt="Graymatter"></li>
+        <li class="selected-clients__mark"><img src="../public/logos/mozi-wash.png" alt="Mozi Wash"></li>
+        <li class="selected-clients__mark"><img src="../public/logos/vandy-chips.png" alt="Vandy Chips"></li>
+        <li><img src="../public/logos/gains-in-bulk.png" alt="Gains in Bulk"></li>
+      </ul>
+    </section>
+    <section class="continuation"><p>Selected work comes next.</p></section>
+  </body>
+</html>
