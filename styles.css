@@ -4,15 +4,16 @@ html { scroll-behavior:smooth; }
 body { margin:0; background:var(--paper); color:var(--ink); font-family:Archivo,Arial,sans-serif; }
 a { color:inherit; }
 .site-header { display:flex; justify-content:space-between; align-items:center; padding:1rem var(--gutter); border-bottom:1px solid var(--rule); }
-.wordmark,.eyebrow,.section-kicker,.project-role,.video-status { font-size:.73rem; font-weight:500; letter-spacing:.11em; text-transform:uppercase; }
+.wordmark,.eyebrow,.section-kicker,.video-status { font-size:.73rem; font-weight:500; letter-spacing:.11em; text-transform:uppercase; }
 .wordmark { text-decoration:none; }
 nav { display:flex; gap:1.3rem; font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; }
 nav a { text-decoration:none; }
-nav a:focus-visible,.project-link:focus-visible,footer a:focus-visible { outline:.22rem solid var(--lime); outline-offset:.22rem; }
+nav a:focus-visible,footer a:focus-visible { outline:.22rem solid var(--lime); outline-offset:.22rem; }
+.project-media:focus-visible,.more-grid figure:focus-visible { outline:.22rem solid var(--lime); outline-offset:.22rem; }
 .hero { display:grid; grid-template-columns:1.3fr .7fr; min-height:clamp(26rem,58vh,34rem); background:var(--ink); color:var(--paper); }
 .hero-copy { padding:clamp(1.7rem,4.25vw,4.2rem) var(--gutter); display:flex; flex-direction:column; justify-content:space-between; }
+.hero .eyebrow { color:var(--lime); }
 .hero-statement { max-width:32rem; margin:0; font:400 clamp(2rem,4.4vw,4.85rem)/1.02 'Bodoni Moda',Georgia,serif; }
-.hero-cred { margin:0; font-size:.78rem; letter-spacing:.09em; text-transform:uppercase; }
 .hero-media,.project-media,figure { position:relative; overflow:hidden; }
 .hero-media { background:transparent; }
 video { display:block; width:100%; height:100%; object-fit:contain; background:transparent; }
@@ -38,14 +39,12 @@ video { display:block; width:100%; height:100%; object-fit:contain; background:t
 .work h1,.work h2,.more-work h2,.about h2,footer h2 { margin:0; font:400 clamp(2.25rem,5vw,5.2rem)/.94 'Bodoni Moda',Georgia,serif; }
 .work-heading p,.missing,footer p { max-width:18rem; color:#5d5b56; font-size:.93rem; }
 .project { display:grid; grid-template-columns:.72fr 1.28fr; gap:clamp(1.6rem,4.7vw,5rem); padding:clamp(2.6rem,5.2vw,5.6rem) 0; border-bottom:1px solid var(--rule); }
-.project-copy { display:flex; flex-direction:column; justify-content:space-between; gap:1.5rem; }
+.project-copy { display:flex; flex-direction:column; justify-content:center; gap:1.5rem; }
 .project-copy h2 { margin:1.1rem 0; font:400 clamp(2rem,3.7vw,4rem)/.98 'Bodoni Moda',Georgia,serif; }
 .project-copy h2 em,.about h2 em,footer h2 em { font-weight:400; }
-.project-copy p:not(.eyebrow):not(.project-role) { line-height:1.45; }
-.project-role { margin:0; color:#5d5b56; }
-.project-link { position:relative; width:max-content; padding:0; border:0; background:transparent; color:var(--ink); font:inherit; text-align:left; text-decoration:none; cursor:pointer; }
-.project-link::after,footer a::after { position:absolute; right:0; bottom:-.25rem; left:0; height:.16em; background:var(--lime); content:""; transform:scaleX(.34); transform-origin:left; transition:transform .35s ease; }
-.project-link:hover::after,.project-link:focus-visible::after,footer a:hover::after,footer a:focus-visible::after { transform:scaleX(1); }
+.project-copy p:not(.eyebrow) { line-height:1.45; }
+footer a::after { position:absolute; right:0; bottom:-.25rem; left:0; height:.16em; background:var(--lime); content:""; transform:scaleX(.34); transform-origin:left; transition:transform .35s ease; }
+footer a:hover::after,footer a:focus-visible::after { transform:scaleX(1); }
 .project-media { width:min(100%,29.4rem); min-height:clamp(4.9rem,9.1vw,8.75rem); justify-self:start; cursor:pointer; }
 .more-grid figure[data-play-target] { cursor:pointer; }
 .project-graymatter { grid-template-columns:.85fr 1.15fr; }
@@ -69,4 +68,4 @@ figcaption { position:absolute; bottom:0; left:0; right:0; padding:.7rem .8rem; 
 footer { display:flex; justify-content:space-between; gap:2rem; align-items:end; padding:clamp(2.5rem,5.8vw,5.8rem) var(--gutter); background:var(--ink); color:var(--paper); }
 footer a { position:relative; font:400 clamp(1.5rem,3vw,2.5rem)/1 'Bodoni Moda',Georgia,serif; text-decoration:none; }
 @media (prefers-reduced-motion:no-preference) { .work-heading { animation:rule-in .7s ease both; } .project-media,figure { transition:transform .45s ease, filter .45s ease; } .project-media:hover,figure:hover { filter:contrast(1.04); transform:translateY(-.2rem); } @keyframes rule-in { from { border-color:transparent; } to { border-color:var(--rule); } } }
-@media (max-width:760px) { .hero,.project,.project-moonbrew,.project-media-first,.about { grid-template-columns:1fr; } .hero { min-height:0; } .hero-copy { min-height:16rem; } .hero-media { min-height:22rem; } .project-moonbrew .project-copy,.project-media-first .project-copy { order:0; } .project-media,.project-moonbrew .project-media,.project-media-first .project-media { width:100%; min-height:11rem; justify-self:stretch; } .more-grid { grid-template-columns:repeat(2,1fr); } .more-grid figure,figure { aspect-ratio:4/5; } .logo-list { justify-content:space-between; column-gap:1.25rem; } footer { display:block; } footer div { margin-top:1.7rem; } .editorial-interruption span:last-child { display:none; } .section-kicker p:last-child { max-width:12rem; text-align:right; } }
+@media (max-width:760px) { .hero,.project,.project-moonbrew,.project-media-first,.about { grid-template-columns:1fr; } .hero { min-height:0; } .hero-copy { min-height:16rem; } .hero-media { min-height:22rem; } .project-moonbrew .project-copy,.project-media-first .project-copy { order:0; } .project-media,.project-moonbrew .project-media,.project-media-first .project-media { width:100%; min-height:11rem; justify-self:stretch; } .more-grid { grid-template-columns:repeat(2,1fr); } .more-grid figure,figure { aspect-ratio:4/5; } .logo-list { justify-content:space-between; column-gap:1.25rem; } footer { display:block; } footer div { margin-top:1.7rem; } .editorial-interruption span:last-child { display:none; } .section-kicker p:last-child { max-width:12rem; text-align:right; } .selected-clients .section-kicker p:last-child { max-width:none; white-space:nowrap; font-size:.68rem; letter-spacing:.03em; } }
