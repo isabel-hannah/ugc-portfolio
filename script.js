@@ -7,7 +7,8 @@ function playFeaturedVideo(targetId) {
     if (otherVideo !== video) otherVideo.pause();
   });
 
-  video.muted = true;
+  video.muted = false;
+  video.volume = 1;
   video.controls = true;
   video.play().catch(() => {
     // Native controls remain available if a browser blocks programmatic playback.
