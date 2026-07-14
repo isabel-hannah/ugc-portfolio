@@ -53,6 +53,10 @@ video { display:block; width:100%; height:100%; object-fit:contain; background:t
 .project-moonbrew .project-copy { order:2; }
 .project-media-first { grid-template-columns:1.28fr .72fr; }
 .project-media-first .project-copy { order:2; }
+.editorial-lifestyle { padding:clamp(2.8rem,5vw,4.8rem) 0; border-bottom:1px solid var(--rule); }
+.editorial-lifestyle h2 { margin:0; font:400 clamp(1.4rem,2.15vw,2.1rem)/1 'Bodoni Moda',Georgia,serif; }
+.lifestyle-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(.55rem,1.15vw,1rem); margin-top:clamp(.9rem,1.45vw,1.25rem); }
+.lifestyle-video { display:block; width:100%; aspect-ratio:9/16; object-fit:cover; background:var(--rule); }
 .play-label { position:absolute; left:1rem; bottom:1rem; padding:.4rem .65rem; background:var(--lime); color:var(--ink); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
 .more-work { padding-top:0; }
 .more-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; margin-top:1.25rem; }
@@ -65,6 +69,10 @@ figcaption { position:absolute; bottom:0; left:0; right:0; padding:.7rem .8rem; 
 .about h2 { margin:.8rem 0 1rem; font-size:clamp(1.65rem,3.25vw,3.5rem); line-height:1; }
 .about p:not(.eyebrow) { max-width:42rem; font-size:.94rem; line-height:1.65; }
 .about p:not(.eyebrow) + p:not(.eyebrow) { margin-top:1rem; }
+.availability { padding:clamp(3rem,6vw,6rem) var(--gutter); }
+.availability-statement { max-width:45rem; margin:1rem 0 .8rem; font:500 clamp(1.4rem,2vw,1.75rem)/1.25 Archivo,Arial,sans-serif; }
+.availability p:not(.eyebrow) { max-width:42rem; margin:0; font-size:.94rem; line-height:1.65; }
+.availability p:last-child { color:#5d5b56; font-size:.9rem; line-height:1.45; }
 footer { display:flex; justify-content:space-between; gap:2rem; align-items:end; padding:clamp(2.5rem,5.8vw,5.8rem) var(--gutter); background:var(--ink); color:var(--paper); }
 footer a { position:relative; font:400 clamp(1.5rem,3vw,2.5rem)/1 'Bodoni Moda',Georgia,serif; text-decoration:none; }
 .footer-contact { display:flex; align-items:center; gap:1rem; }
@@ -72,4 +80,4 @@ footer a { position:relative; font:400 clamp(1.5rem,3vw,2.5rem)/1 'Bodoni Moda',
 .footer-tiktok:hover,.footer-tiktok:focus-visible { color:var(--lime); }
 .footer-tiktok svg { display:block; width:100%; height:100%; fill:currentColor; }
 @media (prefers-reduced-motion:no-preference) { .work-heading { animation:rule-in .7s ease both; } .project-media,figure { transition:transform .45s ease, filter .45s ease; } .project-media:hover,figure:hover { filter:contrast(1.04); transform:translateY(-.2rem); } @keyframes rule-in { from { border-color:transparent; } to { border-color:var(--rule); } } }
-@media (max-width:760px) { .hero,.project,.project-moonbrew,.project-media-first,.about { grid-template-columns:1fr; } .hero { min-height:0; } .hero-copy { min-height:16rem; } .hero-media { min-height:22rem; } .project-moonbrew .project-copy,.project-media-first .project-copy { order:0; } .project-media,.project-moonbrew .project-media,.project-media-first .project-media { width:100%; min-height:11rem; justify-self:stretch; } .more-grid { grid-template-columns:repeat(2,1fr); } .more-grid figure,figure { aspect-ratio:4/5; } .logo-list { justify-content:space-between; column-gap:1.25rem; } footer { display:block; } footer div { margin-top:1.7rem; } .editorial-interruption span:last-child { display:none; } .section-kicker p:last-child { max-width:12rem; text-align:right; } .selected-clients .section-kicker p:last-child { max-width:none; white-space:nowrap; font-size:.68rem; letter-spacing:.03em; } }
+@media (max-width:760px) { .hero,.project,.project-moonbrew,.project-media-first,.about { grid-template-columns:1fr; } .hero { min-height:0; } .hero-copy { min-height:16rem; } .hero-media { min-height:22rem; } .project-moonbrew .project-copy,.project-media-first .project-copy { order:0; } .project-media,.project-moonbrew .project-media,.project-media-first .project-media { width:100%; min-height:11rem; justify-self:stretch; } .editorial-lifestyle { padding:2.8rem 0; } .lifestyle-strip { display:flex; overflow-x:auto; gap:.7rem; margin-right:calc(var(--gutter) * -1); padding-right:var(--gutter); scroll-snap-type:x mandatory; scroll-padding-left:0; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; scrollbar-width:none; } .lifestyle-strip::-webkit-scrollbar { display:none; } .lifestyle-video { width:min(55vw,12rem); min-width:0; flex:0 0 min(55vw,12rem); scroll-snap-align:start; } .capabilities { padding:2.5rem var(--gutter); } .capabilities ul { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem 1rem; margin:1rem 0 1.25rem; font-size:.86rem; } .more-grid { grid-template-columns:repeat(2,1fr); } .more-grid figure,figure { aspect-ratio:4/5; } .logo-list { justify-content:space-between; column-gap:1.25rem; } footer { display:block; } footer div { margin-top:1.7rem; } .editorial-interruption span:last-child { display:none; } .section-kicker p:last-child { max-width:12rem; text-align:right; } .selected-clients .section-kicker p:last-child { max-width:none; white-space:nowrap; font-size:.68rem; letter-spacing:.03em; } }
