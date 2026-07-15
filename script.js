@@ -1,3 +1,67 @@
+// Keep only the silent homepage hero moving; all other videos retain their own behavior.
+const heroVideo = document.getElementById('hero-video');
+
+if (heroVideo) {
+  const heroReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const fallbackEvents = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
+  let fallbackListenersActive = false;
+
+  function removeHeroFallbackListeners() {
+    if (!fallbackListenersActive) return;
+
+    fallbackEvents.forEach((eventName) => {
+      window.removeEventListener(eventName, retryHeroAfterInteraction);
+    });
+    fallbackListenersActive = false;
+  }
+
+  function addHeroFallbackListeners() {
+    if (fallbackListenersActive || heroReduceMotion.matches) return;
+
+    fallbackEvents.forEach((eventName) => {
+      window.addEventListener(eventName, retryHeroAfterInteraction, { passive: true });
+    });
+    fallbackListenersActive = true;
+  }
+
+  function attemptHeroPlayback() {
+    if (heroReduceMotion.matches) {
+      removeHeroFallbackListeners();
+      heroVideo.pause();
+      return;
+    }
+
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    heroVideo.controls = false;
+
+    const playPromise = heroVideo.play();
+    if (playPromise && typeof playPromise.then === 'function') {
+      playPromise
+        .then(removeHeroFallbackListeners)
+        .catch(addHeroFallbackListeners);
+    } else if (heroVideo.paused) {
+      addHeroFallbackListeners();
+    } else {
+      removeHeroFallbackListeners();
+    }
+  }
+
+  function retryHeroAfterInteraction() {
+    attemptHeroPlayback();
+  }
+
+  document.addEventListener('DOMContentLoaded', attemptHeroPlayback);
+  heroVideo.addEventListener('loadedmetadata', attemptHeroPlayback);
+  heroVideo.addEventListener('canplay', attemptHeroPlayback);
+  heroVideo.addEventListener('playing', removeHeroFallbackListeners);
+  window.addEventListener('pageshow', attemptHeroPlayback);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') attemptHeroPlayback();
+  });
+  heroReduceMotion.addEventListener('change', attemptHeroPlayback);
+}
+
 // Featured films play in place, preserving the browsing rhythm of the homepage.
 function playFeaturedVideo(targetId) {
   const video = document.getElementById(targetId);
