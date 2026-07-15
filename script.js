@@ -3,8 +3,15 @@ const heroVideo = document.getElementById('hero-video');
 
 if (heroVideo) {
   const heroReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const fallbackEvents = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
+  const fallbackEvents = ['pointerdown', 'touchstart', 'keydown'];
+  const stationaryRetryDelays = [200, 600, 1200, 2500, 4500];
+  let stationaryRetryTimers = [];
   let fallbackListenersActive = false;
+
+  function clearStationaryRetries() {
+    stationaryRetryTimers.forEach(window.clearTimeout);
+    stationaryRetryTimers = [];
+  }
 
   function removeHeroFallbackListeners() {
     if (!fallbackListenersActive) return;
@@ -26,6 +33,7 @@ if (heroVideo) {
 
   function attemptHeroPlayback() {
     if (heroReduceMotion.matches) {
+      clearStationaryRetries();
       removeHeroFallbackListeners();
       heroVideo.pause();
       return;
@@ -33,12 +41,16 @@ if (heroVideo) {
 
     heroVideo.muted = true;
     heroVideo.defaultMuted = true;
+    heroVideo.playsInline = true;
     heroVideo.controls = false;
 
     const playPromise = heroVideo.play();
     if (playPromise && typeof playPromise.then === 'function') {
       playPromise
-        .then(removeHeroFallbackListeners)
+        .then(() => {
+          clearStationaryRetries();
+          removeHeroFallbackListeners();
+        })
         .catch(addHeroFallbackListeners);
     } else if (heroVideo.paused) {
       addHeroFallbackListeners();
@@ -51,15 +63,35 @@ if (heroVideo) {
     attemptHeroPlayback();
   }
 
-  document.addEventListener('DOMContentLoaded', attemptHeroPlayback);
+  function startHeroPlayback() {
+    clearStationaryRetries();
+    attemptHeroPlayback();
+
+    if (!heroReduceMotion.matches) {
+      stationaryRetryTimers = stationaryRetryDelays.map((delay) => (
+        window.setTimeout(attemptHeroPlayback, delay)
+      ));
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startHeroPlayback, { once: true });
+  } else {
+    startHeroPlayback();
+  }
+
   heroVideo.addEventListener('loadedmetadata', attemptHeroPlayback);
+  heroVideo.addEventListener('loadeddata', attemptHeroPlayback);
   heroVideo.addEventListener('canplay', attemptHeroPlayback);
-  heroVideo.addEventListener('playing', removeHeroFallbackListeners);
+  heroVideo.addEventListener('playing', () => {
+    clearStationaryRetries();
+    removeHeroFallbackListeners();
+  });
   window.addEventListener('pageshow', attemptHeroPlayback);
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') attemptHeroPlayback();
   });
-  heroReduceMotion.addEventListener('change', attemptHeroPlayback);
+  heroReduceMotion.addEventListener('change', startHeroPlayback);
 }
 
 // Featured films play in place, preserving the browsing rhythm of the homepage.
