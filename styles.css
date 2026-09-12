@@ -24,15 +24,24 @@ video { display:block; width:100%; height:100%; object-fit:contain; background:t
 .selected-clients { padding:clamp(1.8rem,4vw,3.6rem) var(--gutter); }
 .section-kicker,.work-heading { display:flex; justify-content:space-between; gap:1rem; }
 .section-kicker p,.work-heading p { margin:0; }
-.logo-list { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; column-gap:clamp(1.3rem,3vw,3.5rem); row-gap:1.4rem; margin:clamp(1.45rem,3vw,2.65rem) 0 0; padding:0; list-style:none; }
-.logo-list li { display:flex; align-items:center; }
-.logo-list img { display:block; width:auto; height:1.4rem; max-width:9.5rem; object-fit:contain; }
+.logo-list { display:flex; flex-direction:column; gap:clamp(.85rem,1.3vw,1.2rem); margin:clamp(1.45rem,3vw,2.65rem) 0 0; }
+.logo-row { display:grid; align-items:center; column-gap:clamp(.75rem,1.7vw,1.8rem); margin:0; padding:0; list-style:none; }
+.logo-row-primary { grid-template-columns:repeat(7,minmax(0,1fr)); }
+.logo-row-secondary { grid-template-columns:repeat(6,minmax(0,1fr)); }
+.logo-list li { display:flex; align-items:center; justify-content:center; min-width:0; }
+.logo-list img { display:block; width:auto; height:1.4rem; max-width:100%; object-fit:contain; filter:brightness(0) saturate(100%); }
 /* Each adjustment compensates for the supplied mark's own proportions, not a shared box. */
 .logo-list .logo-moonbrew img { height:1.2rem; }
 .logo-list .logo-hanacure img { height:1.08rem; }
 .logo-list .logo-equip img { height:1.48rem; }
-.logo-list .logo-filterbaby img,.logo-list .logo-masa img,.logo-list .logo-graymatter img,.logo-list .logo-mozi img,.logo-list .logo-vandy img { height:1.78rem; }
+.logo-list .logo-filterbaby img,.logo-list .logo-mozi img { height:1.92rem; }
+.logo-list .logo-masa img,.logo-list .logo-vandy img { height:2.05rem; }
+.logo-list .logo-graymatter img { height:2.15rem; }
 .logo-list .logo-gains img { height:1.32rem; }
+.logo-list .logo-avocado img { width:min(100%,7.9rem); height:auto; }
+.logo-list .logo-thistle img { height:2.84rem; }
+.logo-list .logo-peppi img { height:1.2rem; }
+.logo-list .logo-kepos img { width:min(100%,3.3rem); height:auto; filter:grayscale(1) contrast(10); mix-blend-mode:multiply; }
 .editorial-interruption { display:flex; justify-content:space-between; gap:1rem; padding:.72rem var(--gutter); background:var(--lime); color:var(--ink); font-size:.76rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
 .work,.more-work { padding:clamp(3.25rem,6.6vw,6.6rem) var(--gutter); }
 .work-heading { align-items:baseline; border-bottom:1px solid var(--rule); padding-bottom:1rem; }
@@ -43,11 +52,12 @@ video { display:block; width:100%; height:100%; object-fit:contain; background:t
 .project-copy h2 { margin:1.1rem 0; font:400 clamp(2rem,3.7vw,4rem)/.98 'Bodoni Moda',Georgia,serif; }
 .project-copy h2 em,.about h2 em,footer h2 em { font-weight:400; }
 .project-copy p:not(.eyebrow) { line-height:1.45; }
+.project-copy .project-role { margin-top:1rem; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; }
 .footer-email::after { position:absolute; right:0; bottom:-.25rem; left:0; height:.16em; background:var(--lime); content:""; transform:scaleX(.34); transform-origin:left; transition:transform .35s ease; }
 .footer-email:hover::after,.footer-email:focus-visible::after { transform:scaleX(1); }
 .project-media { width:min(100%,29.4rem); min-height:clamp(4.9rem,9.1vw,8.75rem); justify-self:start; cursor:pointer; }
 .more-grid figure[data-play-target] { cursor:pointer; }
-.project-graymatter { grid-template-columns:.85fr 1.15fr; }
+.project-avocado { grid-template-columns:.85fr 1.15fr; }
 .project-moonbrew { grid-template-columns:1.28fr .72fr; }
 .project-moonbrew .project-media,.project-media-first .project-media { justify-self:end; }
 .project-moonbrew .project-copy { order:2; }
@@ -59,7 +69,7 @@ video { display:block; width:100%; height:100%; object-fit:contain; background:t
 .lifestyle-video { display:block; width:100%; aspect-ratio:9/16; object-fit:cover; background:var(--rule); }
 .play-label { position:absolute; left:1rem; bottom:1rem; padding:.4rem .65rem; background:var(--lime); color:var(--ink); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
 .more-work { padding-top:0; }
-.more-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; margin-top:1.25rem; }
+.more-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:.7rem; margin-top:1.25rem; }
 .more-grid figure { aspect-ratio:5/7; }
 figure { margin:0; aspect-ratio:4/5; }
 figcaption { position:absolute; bottom:0; left:0; right:0; padding:.7rem .8rem; background:linear-gradient(transparent,rgba(0,0,0,.85)); color:var(--paper); font-size:.76rem; letter-spacing:.07em; text-transform:uppercase; }
@@ -80,4 +90,5 @@ footer a { position:relative; font:400 clamp(1.5rem,3vw,2.5rem)/1 'Bodoni Moda',
 .footer-tiktok:hover,.footer-tiktok:focus-visible { color:var(--lime); }
 .footer-tiktok svg { display:block; width:100%; height:100%; fill:currentColor; }
 @media (prefers-reduced-motion:no-preference) { .work-heading { animation:rule-in .7s ease both; } .project-media,figure { transition:transform .45s ease, filter .45s ease; } .project-media:hover,figure:hover { filter:contrast(1.04); transform:translateY(-.2rem); } @keyframes rule-in { from { border-color:transparent; } to { border-color:var(--rule); } } }
-@media (max-width:760px) { .hero,.project,.project-moonbrew,.project-media-first,.about { grid-template-columns:1fr; } .hero { min-height:0; } .hero-copy { min-height:16rem; } .hero-media { min-height:22rem; } .project-moonbrew .project-copy,.project-media-first .project-copy { order:0; } .project-media,.project-moonbrew .project-media,.project-media-first .project-media { width:100%; min-height:11rem; justify-self:stretch; } .editorial-lifestyle { padding:2.8rem 0; } .lifestyle-strip { display:flex; overflow-x:auto; gap:.7rem; margin-right:calc(var(--gutter) * -1); padding-right:var(--gutter); scroll-snap-type:x mandatory; scroll-padding-left:0; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; scrollbar-width:none; } .lifestyle-strip::-webkit-scrollbar { display:none; } .lifestyle-video { width:min(55vw,12rem); min-width:0; flex:0 0 min(55vw,12rem); scroll-snap-align:start; } .capabilities { padding:2.5rem var(--gutter); } .capabilities ul { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem 1rem; margin:1rem 0 1.25rem; font-size:.86rem; } .more-grid { grid-template-columns:repeat(2,1fr); } .more-grid figure,figure { aspect-ratio:4/5; } .logo-list { justify-content:space-between; column-gap:1.25rem; } footer { display:block; } footer div { margin-top:1.7rem; } .editorial-interruption span:last-child { display:none; } .section-kicker p:last-child { max-width:12rem; text-align:right; } .selected-clients .section-kicker p:last-child { max-width:none; white-space:nowrap; font-size:.68rem; letter-spacing:.03em; } }
+@media (max-width:900px) { .logo-list { gap:1.35rem; } .logo-row { display:flex; flex-wrap:wrap; justify-content:center; gap:1.35rem 1rem; } .logo-row li { flex:0 0 calc((100% - 3rem) / 4); } }
+@media (max-width:760px) { .hero,.project,.project-moonbrew,.project-media-first,.about { grid-template-columns:1fr; } .hero { min-height:0; } .hero-copy { min-height:16rem; } .hero-media { min-height:22rem; } .project-moonbrew .project-copy,.project-media-first .project-copy { order:0; } .project-media,.project-moonbrew .project-media,.project-media-first .project-media { width:100%; min-height:11rem; justify-self:stretch; } .editorial-lifestyle { padding:2.8rem 0; } .lifestyle-strip { display:flex; overflow-x:auto; gap:.7rem; margin-right:calc(var(--gutter) * -1); padding-right:var(--gutter); scroll-snap-type:x mandatory; scroll-padding-left:0; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; scrollbar-width:none; } .lifestyle-strip::-webkit-scrollbar { display:none; } .lifestyle-video { width:min(55vw,12rem); min-width:0; flex:0 0 min(55vw,12rem); scroll-snap-align:start; } .capabilities { padding:2.5rem var(--gutter); } .capabilities ul { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem 1rem; margin:1rem 0 1.25rem; font-size:.86rem; } .more-grid { grid-template-columns:repeat(2,1fr); } .more-grid figure,figure { aspect-ratio:4/5; } .logo-list { gap:1.25rem; } .logo-row { gap:1.25rem .9rem; } .logo-row li { flex-basis:calc((100% - 1.8rem) / 3); } footer { display:block; } footer div { margin-top:1.7rem; } .editorial-interruption span:last-child { display:none; } .section-kicker p:last-child { max-width:12rem; text-align:right; } .selected-clients .section-kicker p:last-child { max-width:none; white-space:nowrap; font-size:.68rem; letter-spacing:.03em; } }
